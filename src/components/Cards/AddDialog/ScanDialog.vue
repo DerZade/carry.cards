@@ -2,7 +2,7 @@
     <Dialog v-model:open="open">
         <DialogContent class="p-0 border-none rounded-md">
             <div style="position: relative">
-                <video ref="video" class="rounded-md" @canplay="updateCanvasSize"></video>
+                <video autobuffer autoplay playsinline muted loop ref="video" class="rounded-md" @canplay="updateCanvasSize"></video>
                 <canvas ref="canvas" style="position: absolute; inset: 0; inline-size: 100%; block-size: 100%" :width :height></canvas>
                 <div
                     style="
