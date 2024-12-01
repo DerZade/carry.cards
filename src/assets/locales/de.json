@@ -1,3 +1,19 @@
 {
-    "cards": "Karten"
+    "cards": "Karten",
+    "add_card": "Karte hinzufügen",
+    "grant_camera_access": {
+        "title": "Kamerazugriff erlauben",
+        "description": "Um QR- oder Barcodes zu scannen, brauchen wir Zugriff auf deine Kamera.",
+        "grant": "Zugriff erlauben",
+        "not_now": "Nicht jetzt",
+        "disclaimer": "Du kannst dies jederzeit in den Systemeinstellungen deaktivieren.",
+        "error": {
+            "title": "Zugriff verweigert",
+            "description": "Es sieht so aus, als hättest du den Kamerazugriff verweigert. Bitte gehe zu den Systemeinstellungen und erlaube den Kamerazugriff."
+        }
+    },
+    "add": "Hinzufügen",
+    "no_code_detected": "Kein Code erkannt",
+    "try_again": "Erneut versuchen",
+    "display_name": "Name"
 }

@@ -16,6 +16,7 @@
             <RouterView @update:title="title = $event" />
         </main>
     </div>
+    <Toaster />
 </template>
 
 <script setup lang="ts">
@@ -23,6 +24,7 @@ import { ref, watch } from 'vue';
 import { RouterView, useRoute, useRouter } from 'vue-router';
 import { ChevronLeft, Settings } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
+import { Toaster } from '@/components/ui/toast';
 
 const route = useRoute();
 

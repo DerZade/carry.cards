@@ -14,17 +14,13 @@
 import { computed, type DeepReadonly, useId } from 'vue';
 import { QrCode, Barcode } from 'lucide-vue-next';
 import { Card } from '@/types';
+import { getCodeType } from '@/utils/code';
 
 const props = defineProps<{
     card: DeepReadonly<Card>;
 }>();
 
-const Icon = computed(() => {
-    if (['aztec', 'data_matrix', 'maxi_code', 'micro_qr_code', 'qr_code', 'rm_qr_code', 'matrix_codes'].includes(props.card.format))
-        return QrCode;
-
-    return Barcode;
-});
+const Icon = computed(() => (getCodeType(props.card.format) === 'qr' ? QrCode : Barcode));
 
 const labelId = useId();
 </script>

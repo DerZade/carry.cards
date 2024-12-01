@@ -1,3 +1,19 @@
 {
-    "cards": "Cards"
+    "cards": "Cards",
+    "add_card": "Add Card",
+    "grant_camera_access": {
+        "title": "Grant Camera Access",
+        "description": "To scan QR and Barcodes, we need access to your camera.",
+        "grant": "Grant Access",
+        "not_now": "Not Now",
+        "disclaimer": "You can disable this at any time in the system settings.",
+        "error": {
+            "title": "Access denied",
+            "description": "Looks like you have denied camera access. Please go to the system settings and grant camera access."
+        }
+    },
+    "add": "Add",
+    "no_code_detected": "No code detected",
+    "try_again": "Try again",
+    "display_name": "Name"
 }
