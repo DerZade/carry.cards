@@ -1,9 +1,9 @@
 {
-  "recommendations": [
-    "Vue.volar",
-    "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "vivaxy.vscode-conventional-commits"
-  ]
+    "recommendations": [
+        "Vue.volar",
+        "stylelint.vscode-stylelint",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "vivaxy.vscode-conventional-commits"
+    ]
 }
