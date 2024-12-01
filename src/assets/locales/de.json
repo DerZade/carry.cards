@@ -15,5 +15,11 @@
     "add": "Hinzufügen",
     "no_code_detected": "Kein Code erkannt",
     "try_again": "Erneut versuchen",
-    "display_name": "Name"
+    "display_name": "Name",
+    "delete_card": "Karte löschen",
+    "delete_card_title": "{name} löschen?",
+    "delete_card_message": "Bist du sicher, dass du deine '{name}' Karte löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "photos": "Fotos",
+    "edit_card": "Karte bearbeiten"
 }

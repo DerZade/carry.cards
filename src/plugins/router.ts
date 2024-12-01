@@ -5,10 +5,20 @@ const router = createRouter({
     routes: [
         {
             path: '/cards',
+            name: 'cards',
             component: () => import('../views/Cards.vue'),
             meta: {
                 title: 'cards',
                 showSettings: true,
+            },
+        },
+        {
+            path: '/card/:id',
+            name: 'card',
+            component: () => import('../views/Card.vue'),
+            props: true,
+            meta: {
+                showBack: true,
             },
         },
     ],
