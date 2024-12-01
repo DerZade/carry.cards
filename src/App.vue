@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-rows-[auto_1fr] overflow-hidden size-full">
         <nav class="grid items-center gap-2 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)]">
-            <Button v-if="route.meta['showBack']" variant="ghost" size="icon" @click="router.back()">
+            <Button v-if="route.meta['showBack']" variant="ghost" size="icon" @click="router.push({ name: 'cards', params: {} })">
                 <ChevronLeft class="size-4" />
             </Button>
             <h1 v-if="title || route.meta['title']" class="col-start-2 truncate text-lg text-center">
