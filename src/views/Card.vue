@@ -33,13 +33,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, watch, h } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { Pencil, Trash2, Camera } from 'lucide-vue-next';
+import { Pencil, Trash2, Camera, Smile } from 'lucide-vue-next';
 
 import { useCardsStore } from '@/stores/cards';
 
+import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import {
     AlertDialog,
@@ -87,11 +89,21 @@ function deleteCard() {
     router.replace({ name: 'cards', params: {} });
 }
 
+const { toast } = useToast();
+
+const { t } = useI18n({ useScope: 'global' });
+
 function showPhotos() {
-    // TODO
+    toast({
+        title: t('coming_soon'),
+        action: h(Smile),
+    });
 }
 
 function editCard() {
-    // TODO
+    toast({
+        title: t('coming_soon'),
+        action: h(Smile),
+    });
 }
 </script>

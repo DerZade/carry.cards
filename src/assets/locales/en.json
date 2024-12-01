@@ -21,5 +21,6 @@
     "delete_card_message": "Are you sure you want to delete your '{name}' card? This action cannot be undone.",
     "cancel": "Cancel",
     "photos": "Photos",
-    "edit_card": "Edit Card"
+    "edit_card": "Edit Card",
+    "coming_soon": "Coming soon!"
 }

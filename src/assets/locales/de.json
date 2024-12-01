@@ -21,5 +21,6 @@
     "delete_card_message": "Bist du sicher, dass du deine '{name}' Karte löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "cancel": "Abbrechen",
     "photos": "Fotos",
-    "edit_card": "Karte bearbeiten"
+    "edit_card": "Karte bearbeiten",
+    "coming_soon": "Coming soon!"
 }

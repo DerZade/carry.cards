@@ -8,7 +8,7 @@
                 <span v-if="title">{{ title }}</span>
                 <span v-else v-t="route.meta['title']"></span>
             </h1>
-            <Button v-if="route.meta['showSettings']" variant="ghost" size="icon" class="col-start-3">
+            <Button v-if="route.meta['showSettings']" variant="ghost" size="icon" class="col-start-3" @click="openSettings">
                 <Settings class="size-4" />
             </Button>
         </nav>
@@ -20,11 +20,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { h, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { RouterView, useRoute, useRouter } from 'vue-router';
-import { ChevronLeft, Settings } from 'lucide-vue-next';
+import { ChevronLeft, Settings, Smile } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
-import { Toaster } from '@/components/ui/toast';
+import { Toaster, useToast } from '@/components/ui/toast';
 
 const route = useRoute();
 
@@ -34,6 +35,17 @@ watch(route, () => {
 });
 
 const router = useRouter();
+
+const { toast } = useToast();
+
+const { t } = useI18n({ useScope: 'global' });
+
+function openSettings() {
+    toast({
+        title: t('coming_soon'),
+        action: h(Smile),
+    });
+}
 </script>
 
 <style>
