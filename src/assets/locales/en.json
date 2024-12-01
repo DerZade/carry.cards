@@ -16,6 +16,7 @@
     "no_code_detected": "No code detected",
     "try_again": "Try again",
     "display_name": "Name",
+    "color": "Color",
     "delete_card": "Delete Card",
     "delete_card_title": "Delete {name}?",
     "delete_card_message": "Are you sure you want to delete your '{name}' card? This action cannot be undone.",

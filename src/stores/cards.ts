@@ -14,5 +14,11 @@ export const useCardsStore = defineStore('cards', () => {
         cards.value = cards.value.filter(card => card.id !== id);
     }
 
-    return { cards: readonly(cards), addCard, deleteCard };
+    function updateCard(card: Card) {
+        const index = cards.value.findIndex(c => c.id === card.id);
+
+        cards.value.splice(index, 1, card);
+    }
+
+    return { cards: readonly(cards), addCard, deleteCard, updateCard };
 });

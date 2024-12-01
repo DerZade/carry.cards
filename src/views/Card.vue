@@ -1,10 +1,7 @@
 <template>
     <div v-if="card" class="p-2 grid gap-2">
         <RenderedCode :format="card.format" :rawValue="card.rawValue" />
-        <Button variant="secondary" @click="editCard">
-            <Pencil class="size-4" />
-            <span v-t="'edit_card'"></span>
-        </Button>
+        <EditCard :modelValue="card" @update:modelValue="onEditSubmit" />
         <Button variant="secondary" @click="showPhotos">
             <Camera class="size-4" />
             <span v-t="'photos'"></span>
@@ -17,15 +14,17 @@
 import { computed, watch, h } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
-import { Pencil, Camera, Smile } from 'lucide-vue-next';
+import { Camera, Smile } from 'lucide-vue-next';
 
 import { useCardsStore } from '@/stores/cards';
+import type { Card } from '@/types';
 
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 
 import RenderedCode from '@/components/RenderedCode.vue';
 import DeleteCard from '@/components/Card/DeleteCard.vue';
+import EditCard from '@/components/Card/EditCard.vue';
 
 const props = defineProps<{
     id: string;
@@ -61,10 +60,7 @@ function showPhotos() {
     });
 }
 
-function editCard() {
-    toast({
-        title: t('coming_soon'),
-        action: h(Smile),
-    });
+function onEditSubmit(value: Card) {
+    store.updateCard(value);
 }
 </script>
