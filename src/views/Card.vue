@@ -9,26 +9,7 @@
             <Camera class="size-4" />
             <span v-t="'photos'"></span>
         </Button>
-        <AlertDialog>
-            <AlertDialogTrigger as-child>
-                <Button variant="destructive">
-                    <Trash2 class="size-4" />
-                    <span v-t="'delete_card'"></span>
-                </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle><span v-t="{ path: 'delete_card_title', args: { name: card.displayName } }"></span></AlertDialogTitle>
-                    <AlertDialogDescription>
-                        <span v-t="{ path: 'delete_card_message', args: { name: card.displayName } }"></span>
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel><span v-t="'cancel'"></span></AlertDialogCancel>
-                    <AlertDialogAction @click="deleteCard"><span v-t="'delete_card'"></span></AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
+        <DeleteCard :card="card" />
     </div>
 </template>
 
@@ -36,26 +17,15 @@
 import { computed, watch, h } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
-import { Pencil, Trash2, Camera, Smile } from 'lucide-vue-next';
+import { Pencil, Camera, Smile } from 'lucide-vue-next';
 
 import { useCardsStore } from '@/stores/cards';
 
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 
 import RenderedCode from '@/components/RenderedCode.vue';
+import DeleteCard from '@/components/Card/DeleteCard.vue';
 
 const props = defineProps<{
     id: string;
@@ -79,15 +49,6 @@ watch(
     },
     { immediate: true },
 );
-
-const router = useRouter();
-
-function deleteCard() {
-    if (!card.value) return;
-
-    store.deleteCard(card.value);
-    router.replace({ name: 'cards', params: {} });
-}
 
 const { toast } = useToast();
 
