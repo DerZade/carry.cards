@@ -14,11 +14,11 @@
                         padding-block: 0.5rem;
                     "
                 >
-                    <Button v-if="barcodes.length" class="bg-[#ded523] hover:bg-[#ded523]/90 text-black" @click="submit">
+                    <Button v-if="barcodes.length" class="bg-brand hover:bg-brand/90" @click="submit">
                         <component :is="codeType === 'qr' ? ScanQrCode : ScanBarcode" class="size-4" />
                         <span v-t="'add'"></span>
                     </Button>
-                    <Button v-else disabled class="bg-[#ded523] text-black">
+                    <Button v-else disabled class="bg-brand">
                         <ScanSearch class="size-4" />
                         <span v-t="'no_code_detected'"></span>
                     </Button>
@@ -140,7 +140,7 @@ watch(barcodes, val => {
             ctx.bezierCurveTo(p2.x, p2.y, p2.x, p2.y, ...linearInterpolate(p2, p3, 10));
 
             ctx.lineTo(...linearInterpolate(p2, p3, 20));
-            ctx.strokeStyle = '#ded523';
+            ctx.strokeStyle = 'hsl(57 74% 50%)';
             ctx.shadowColor = 'black';
             ctx.shadowBlur = 10;
             ctx.lineWidth = 3;

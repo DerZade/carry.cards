@@ -3,7 +3,7 @@
         <ul :aria-label="t('cards')" class="p-3 pb-6 overflow-hidden grid gap-y-3 gap-x-2 grid-cols-[repeat(auto-fill,minmax(10rem,1fr))]">
             <CardItem v-for="c in cards" :key="c.id" :card="c" />
             <Button variant="outline" class="justify-self-stretch aspect-[2] h-auto" :aria-label="t('add_card')" @click="addDialog = true">
-                <Plus class="!size-5 rounded-full p-3 box-content bg-secondary text-secondary-foreground" />
+                <Plus class="!size-5 rounded-full p-3 box-content bg-muted text-muted-foreground" />
             </Button>
         </ul>
     </ScrollArea>
