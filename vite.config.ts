@@ -19,6 +19,9 @@ export default defineConfig(c => ({
                       lintCommand: 'eslint .',
                       useFlatConfig: true,
                   },
+                  stylelint: {
+                      lintCommand: 'stylelint **/*.{scss,vue}',
+                  },
               }),
         VueI18nPlugin({
             include: fileURLToPath(new URL('./src/assets/locales/**', import.meta.url)),

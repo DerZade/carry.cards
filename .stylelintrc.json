@@ -1,0 +1,48 @@
+{
+    "extends": ["stylelint-config-recommended-scss", "stylelint-config-recommended-vue/scss", "stylelint-config-prettier-scss"],
+    "plugins": ["stylelint-use-logical-spec", "stylelint-prettier"],
+    "overrides": [
+        {
+            "files": ["*.vue", "**/*.vue", "*.scss", "**/*.scss"],
+            "rules": {
+                "prettier/prettier": true,
+                "unit-allowed-list": [
+                    "s",
+                    "em",
+                    "rem",
+                    "fr",
+                    "vb",
+                    "dvb",
+                    "lvb",
+                    "svb",
+                    "vi",
+                    "dvi",
+                    "lvi",
+                    "svi",
+                    "ch",
+                    "%",
+                    "deg",
+                    "cqi",
+                    "cqb",
+                    "cqmin",
+                    "cqmax"
+                ],
+                "font-family-no-missing-generic-family-keyword": [true, {}],
+                "value-keyword-case": [
+                    "lower",
+                    {
+                        "ignoreFunctions": ["v-bind"]
+                    }
+                ],
+                "declaration-empty-line-before": null,
+                "declaration-block-no-redundant-longhand-properties": null,
+                "color-function-notation": null,
+                "selector-class-pattern": null,
+                "custom-property-empty-line-before": null,
+                "custom-property-pattern": null,
+                "liberty/use-logical-spec": "always",
+                "scss/comment-no-empty": null
+            }
+        }
+    ]
+}
