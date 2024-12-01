@@ -2,16 +2,16 @@
     <ScrollArea class="size-full">
         <ul :aria-label="t('cards')" class="p-3 pb-6 overflow-hidden grid gap-y-3 gap-x-2 grid-cols-[repeat(auto-fill,minmax(10rem,1fr))]">
             <CardItem v-for="c in cards" :key="c.id" :card="c" />
-            <Button variant="outline" class="justify-self-stretch aspect-[2] h-auto" :aria-label="t('add_card')" @click="addDialog = true">
+            <Button variant="outline" class="justify-self-stretch aspect-[2] h-auto" :aria-label="t('add_card')" @click="addDialog?.open()">
                 <Plus class="!size-5 rounded-full p-3 box-content bg-muted text-muted-foreground" />
             </Button>
         </ul>
     </ScrollArea>
-    <AddDialog v-model:open="addDialog" />
+    <AddDialog ref="addDialog" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
 import { Plus } from 'lucide-vue-next';
@@ -26,5 +26,5 @@ const { t } = useI18n({ useScope: 'global' });
 
 const { cards } = storeToRefs(useCardsStore());
 
-const addDialog = ref(false);
+const addDialog = useTemplateRef('addDialog');
 </script>

@@ -34,6 +34,10 @@ import { useToast } from '@/components/ui/toast';
 
 const props = defineProps<{ constraints: MediaStreamConstraints }>();
 
+const emit = defineEmits<{
+    granted: [];
+}>();
+
 const open = defineModel<boolean>('open', { type: Boolean, required: true });
 
 const { t } = useI18n({ useScope: 'global' });
@@ -48,6 +52,7 @@ async function askForPermission() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia(props.constraints);
         stream.getTracks().forEach(track => track.stop());
+        emit('granted');
     } catch {
         toast({
             variant: 'destructive',

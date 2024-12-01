@@ -1,6 +1,6 @@
 <template>
     <Form v-if="scanResult" v-slot="{ handleSubmit }" as="" keep-values :validation-schema="formSchema">
-        <Dialog v-model:open="open">
+        <Dialog v-model:open="isOpen">
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle><span v-t="'add_card'"></span></DialogTitle>
@@ -30,15 +30,15 @@
             </DialogContent>
         </Dialog>
     </Form>
-    <GrantCameraAccessDialog v-else-if="permission !== 'granted'" v-model:open="open" :constraints />
+    <GrantCameraAccessDialog v-else-if="!permission" v-model:open="isOpen" :constraints @granted="open" />
     <ScanDialog
         v-else
-        v-model:open="open"
+        v-model:open="isOpen"
         :constraints
         @submit="
             scanResult = $event;
             nextTick(() => {
-                open = true;
+                isOpen = true;
             });
         "
     />
@@ -47,7 +47,6 @@
 <script setup lang="ts">
 import { nextTick, ref, useId } from 'vue';
 import { useRouter } from 'vue-router';
-import { usePermission } from '@vueuse/core';
 import { Plus, ScanSearch } from 'lucide-vue-next';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as z from 'zod';
@@ -61,9 +60,17 @@ import GrantCameraAccessDialog from './AddDialog/GrantCameraAccessDialog.vue';
 import ScanDialog from './AddDialog/ScanDialog.vue';
 import RenderedCode from '../RenderedCode.vue';
 
-const open = defineModel<boolean>('open', { type: Boolean, required: true });
+const isOpen = ref(false);
+const permission = ref(false);
 
-const permission = usePermission('camera');
+async function open() {
+    const { state } = await navigator.permissions.query({ name: 'camera' as PermissionName });
+
+    permission.value = state === 'granted';
+    isOpen.value = true;
+}
+
+defineExpose({ open });
 
 const constraints: MediaStreamConstraints = { video: { facingMode: 'environment' } };
 
