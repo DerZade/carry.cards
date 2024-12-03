@@ -23,9 +23,10 @@
 import { h, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { RouterView, useRoute, useRouter } from 'vue-router';
-import { ChevronLeft, Settings, Smile } from 'lucide-vue-next';
+import { ChevronLeft, Settings, Smile, WifiOff } from 'lucide-vue-next';
+import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { Button } from '@/components/ui/button';
-import { Toaster, useToast } from '@/components/ui/toast';
+import { Toaster, useToast, ToastAction } from '@/components/ui/toast';
 
 const route = useRoute();
 
@@ -46,6 +47,34 @@ function openSettings() {
         action: h(Smile),
     });
 }
+
+const { updateServiceWorker } = useRegisterSW({
+    immediate: true,
+    onOfflineReady() {
+        toast({
+            title: t('ready_to_work_offline'),
+            action: h(WifiOff),
+            duration: 5000,
+        });
+    },
+    onNeedRefresh() {
+        toast({
+            title: t('new_version_available'),
+            action: h(
+                ToastAction,
+                {
+                    altText: t('update_now'),
+                    onClick: () => {
+                        updateServiceWorker();
+                    },
+                },
+                {
+                    default: () => t('update_now'),
+                },
+            ),
+        });
+    },
+});
 </script>
 
 <style>

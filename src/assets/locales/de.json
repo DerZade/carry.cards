@@ -23,5 +23,8 @@
     "cancel": "Abbrechen",
     "photos": "Fotos",
     "edit_card": "Karte bearbeiten",
-    "coming_soon": "Coming soon!"
+    "coming_soon": "Coming soon!",
+    "new_version_available": "Neue Version verfügbar!",
+    "update_now": "Jetzt aktualisieren",
+    "ready_to_work_offline": "Bereit zum Offline-Arbeiten!"
 }

@@ -23,5 +23,8 @@
     "cancel": "Cancel",
     "photos": "Photos",
     "edit_card": "Edit Card",
-    "coming_soon": "Coming soon!"
+    "coming_soon": "Coming soon!",
+    "new_version_available": "New version available!",
+    "update_now": "Update now",
+    "ready_to_work_offline": "Ready to work offline!"
 }
