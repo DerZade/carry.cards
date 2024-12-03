@@ -4,4 +4,5 @@ export type Card = {
     color: string;
     format: BarcodeFormat;
     rawValue: string;
+    image?: string | undefined;
 };

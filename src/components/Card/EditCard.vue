@@ -30,6 +30,15 @@
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <FormField v-slot="{ componentField }" name="image">
+                        <FormItem>
+                            <FormLabel><span v-t="'image'"></span></FormLabel>
+                            <FormControl>
+                                <Input type="file" accept="image/*" v-bind="componentField" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
                 </form>
                 <DialogFooter>
                     <Button type="submit" :form="formId"> Save changes </Button>
@@ -45,6 +54,7 @@ import * as z from 'zod';
 import { Pencil } from 'lucide-vue-next';
 import { toTypedSchema } from '@vee-validate/zod';
 import type { Card } from '@/types';
+import { dataURLtoBlob, deleteFile, storeFile } from '@/utils/file';
 
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -58,12 +68,17 @@ const open = ref(false);
 const zodSchema = z.object({
     displayName: z.string().min(2).max(50),
     color: z.string(),
+    image: z.string().optional(),
 });
 
 const formSchema = toTypedSchema(zodSchema);
 
-async function onSubmit({ displayName, color }: z.infer<typeof zodSchema>) {
-    model.value = { ...model.value, displayName, color };
+async function onSubmit({ displayName, color, image }: z.infer<typeof zodSchema>) {
+    if (model.value.image) await deleteFile(model.value.image);
+
+    const imageId = !image ? undefined : await dataURLtoBlob(image).then(storeFile);
+
+    model.value = { ...model.value, displayName, color, image: imageId };
 
     open.value = false;
 }
