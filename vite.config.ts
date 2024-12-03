@@ -61,7 +61,7 @@ export default defineConfig(c => ({
                 name: 'carry.cards',
                 short_name: 'carry.cards',
                 start_url: '/cards',
-                theme_color: '#DED523',
+                theme_color: '#000000',
             },
         }),
     ],
