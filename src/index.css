@@ -1,2 +1,31 @@
 @import 'tailwindcss';
 @plugin "tailwindcss-logical";
+
+@theme {
+  --color-scheme: dark;
+  --color-brand: #ded421;
+  --color-background: #000;
+  --color-foreground: #fff;
+}
+
+html,
+body,
+#app {
+  inline-size: 100dvi;
+  block-size: 100dvb;
+  overflow: hidden;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+@utility btn-flat {
+  @apply rounded-md px-4 py-2 outline-none hover:bg-foreground/10 focus-visible:bg-foreground/10 cursor-pointer;
+}
+
+@utility btn-icon {
+  @apply aspect-square p-2 btn-flat;
+}
