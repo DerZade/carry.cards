@@ -1,1 +1,7 @@
-{}
+{
+  "pwa": {
+    "new_version_available": "Neue Version verfügbar!",
+    "update_now": "Jetzt aktualisieren",
+    "ready_to_work_offline": "Bereit zum Offline-Arbeiten!"
+  }
+}
