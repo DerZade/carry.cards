@@ -8,14 +8,6 @@
   --color-foreground: #fff;
 }
 
-html,
-body,
-#app {
-  inline-size: 100dvi;
-  block-size: 100dvb;
-  overflow: hidden;
-}
-
 html {
   color-scheme: dark;
   background: var(--color-background);
@@ -40,6 +32,10 @@ html {
 
 @utility btn-brand {
   @apply btn-base bg-brand/80 hover:bg-brand focus-visible:bg-brand text-background;
+}
+
+@utility full-page-size {
+  block-size: calc(100dvb - --spacing(14));
 }
 
 :root {

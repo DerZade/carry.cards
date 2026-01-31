@@ -1,24 +1,18 @@
 <template>
-  <div class="grid grid-rows-[auto_1fr] overflow-hidden size-full">
-    <nav class="grid items-center gap-2 min-bs-14 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)]">
-      <button
-        v-if="typeof route.meta['backTo'] === 'string'"
-        class="btn-icon"
-        @click="router.push({ name: route.meta['backTo'], params: {} })"
-      >
-        <ChevronLeft class="size-4" />
-      </button>
-      <h1 v-if="title || route.meta['title']" class="col-start-2 truncate text-lg text-center">
-        <span v-if="title">{{ title }}</span>
-        <span v-else-if="typeof route.meta['title'] === 'string'">{{
-          t(route.meta['title'])
-        }}</span>
-      </h1>
-    </nav>
-    <main class="self-stretch overflow-hidden grid">
-      <RouterView class="self-stretch" @update:title="title = $event" />
-    </main>
-  </div>
+  <nav
+    class="grid items-center gap-2 min-bs-14 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)] sticky block-start-0 bg-background z-10"
+  >
+    <button v-if="route.meta['showBack']" class="btn-icon" @click="router.back()">
+      <ChevronLeft class="size-4" />
+    </button>
+    <h1 v-if="title || route.meta['title']" class="col-start-2 truncate text-lg text-center">
+      <span v-if="title">{{ title }}</span>
+      <span v-else-if="typeof route.meta['title'] === 'string'">{{ t(route.meta['title']) }}</span>
+    </h1>
+  </nav>
+  <main>
+    <RouterView @update:title="title = $event" />
+  </main>
   <Toaster />
 </template>
 
@@ -62,3 +56,14 @@ const { updateServiceWorker } = useRegisterSW({
     }),
 })
 </script>
+
+<style>
+/* Ensure navbar stays on top during view transitions */
+nav {
+  view-transition-name: header;
+}
+
+::view-transition-group(header) {
+  z-index: 100;
+}
+</style>

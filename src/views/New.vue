@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="permission !== 'granted'"
-    class="grid content-center justify-items-center gap-4 text-foreground px-2 text-center"
+    class="full-page-size grid content-center justify-items-center gap-4 text-foreground px-2 text-center"
   >
     <Spinner v-if="permission === null" class="text-5xl" />
     <template v-else-if="permission === 'denied'">
@@ -23,10 +23,10 @@
       <button @click="goBack" class="btn-flat">{{ t('new.not_now') }}</button>
     </template>
   </div>
-  <Scanner v-else-if="!card" :constraints @submit="handleScanResult" />
+  <Scanner v-else-if="!card" class="full-page-size" :constraints @submit="handleScanResult" />
   <form
     v-else
-    class="px-4 grid gap-1 content-start"
+    class="px-4 grid gap-1 content-start full-page-size"
     @reset.prevent="card = null"
     @submit.prevent="addCard"
   >

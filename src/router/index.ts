@@ -1,7 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition && from !== START_LOCATION) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
   routes: [
     {
       path: '/',
@@ -22,7 +29,7 @@ const router = createRouter({
       component: () => import('../views/Card.vue'),
       props: true,
       meta: {
-        backTo: 'cards',
+        showBack: true,
       },
     },
     {
@@ -30,7 +37,7 @@ const router = createRouter({
       name: 'new',
       component: () => import('../views/New.vue'),
       meta: {
-        backTo: 'cards',
+        showBack: true,
         title: 'add_card',
       },
     },

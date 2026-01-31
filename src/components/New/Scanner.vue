@@ -1,5 +1,5 @@
 <template>
-  <div class="relative size-full overflow-hidden">
+  <div class="relative overflow-hidden">
     <video
       autobuffer
       autoplay
