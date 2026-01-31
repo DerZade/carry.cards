@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-rows-[auto_1fr] overflow-hidden size-full">
-    <nav class="grid items-center gap-2 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)]">
+    <nav class="grid items-center gap-2 min-bs-14 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)]">
       <button
         v-if="typeof route.meta['backTo'] === 'string'"
         class="btn-icon"
