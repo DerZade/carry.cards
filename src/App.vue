@@ -15,8 +15,8 @@
         }}</span>
       </h1>
     </nav>
-    <main class="self-stretch overflow-hidden">
-      <RouterView @update:title="title = $event" />
+    <main class="self-stretch overflow-hidden grid">
+      <RouterView class="self-stretch" @update:title="title = $event" />
     </main>
   </div>
   <Toaster />

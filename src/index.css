@@ -29,3 +29,34 @@ html {
 @utility btn-icon {
   @apply aspect-square p-2 btn-flat;
 }
+
+:root {
+  --card-aspect-ratio: 1.586;
+}
+
+/* Custom scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: --alpha(var(--color-foreground) / 30%) transparent;
+}
+
+*::-webkit-scrollbar {
+  inline-size: --spacing(2);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-foreground/30;
+  border-radius: --spacing(1);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground/45;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
