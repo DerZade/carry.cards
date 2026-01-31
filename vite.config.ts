@@ -10,6 +10,9 @@ import { minimal2023Preset } from '@vite-pwa/assets-generator/config'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    allowedHosts: true,
+  },
   plugins: [
     vue(),
     vueDevTools(),
@@ -51,6 +54,7 @@ export default defineConfig({
         short_name: 'carry.cards',
         start_url: '/cards',
         theme_color: '#000000',
+        orientation: 'portrait-primary',
       },
     }),
   ],
