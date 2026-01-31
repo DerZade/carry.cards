@@ -4,5 +4,20 @@
     "update_now": "Jetzt aktualisieren",
     "ready_to_work_offline": "Bereit zum Offline-Arbeiten!"
   },
-  "cards": "Karten"
+  "cards": "Karten",
+  "add_card": "Karte hinzufügen",
+  "display_name": "Name",
+  "color": "Farbe",
+  "new": {
+    "camera_access_required": "Kamerazugriff erforderlich",
+    "camera_access_description": "Um Ihre Mitgliedskarten zu scannen, benötigen wir Zugriff auf Ihre Kamera.",
+    "camera_access_denied": "Kamerazugriff verweigert",
+    "camera_access_denied_description": "Der Kamerazugriff wurde verweigert. Bitte erlauben Sie den Kamerazugriff in Ihren Browsereinstellungen oder versuchen Sie es erneut.",
+    "grant_access": "Zugriff gewähren",
+    "not_now": "Nicht jetzt",
+    "edit_card": "Karte bearbeiten",
+    "try_again": "Erneut versuchen",
+    "add_code": "Code hinzufügen",
+    "no_code_detected": "Kein Code erkannt"
+  }
 }

@@ -25,6 +25,15 @@ const router = createRouter({
         backTo: 'cards',
       },
     },
+    {
+      path: '/new',
+      name: 'new',
+      component: () => import('../views/New.vue'),
+      meta: {
+        backTo: 'cards',
+        title: 'add_card',
+      },
+    },
   ],
 })
 

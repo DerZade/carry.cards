@@ -22,12 +22,24 @@ html {
   color: var(--color-foreground);
 }
 
+@utility btn-base {
+  @apply rounded-md px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2;
+}
+
 @utility btn-flat {
-  @apply rounded-md px-4 py-2 outline-none hover:bg-foreground/10 focus-visible:bg-foreground/10 cursor-pointer;
+  @apply btn-base hover:bg-foreground/20 focus-visible:bg-foreground/20;
 }
 
 @utility btn-icon {
-  @apply aspect-square p-2 btn-flat;
+  @apply btn-flat aspect-square p-2;
+}
+
+@utility btn-primary {
+  @apply btn-base bg-foreground/80 hover:bg-foreground focus-visible:bg-foreground text-background;
+}
+
+@utility btn-brand {
+  @apply btn-base bg-brand/80 hover:bg-brand focus-visible:bg-brand text-background;
 }
 
 :root {
@@ -59,4 +71,17 @@ html {
 
 *::-webkit-scrollbar-button {
   display: none;
+}
+
+/* Input styles */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='color'],
+textarea {
+  @apply w-full placeholder:text-foreground/40 text-foreground border border-foreground/40 rounded-md px-3 py-2 transition duration-300 ease-[ease] focus:outline-none focus:border-foreground hover:border-foreground shadow-sm focus:shadow;
+}
+
+input[type='color'] {
+  block-size: calc(1em + --spacing(6.4));
 }

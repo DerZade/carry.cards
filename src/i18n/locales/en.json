@@ -4,5 +4,20 @@
     "update_now": "Update now",
     "ready_to_work_offline": "Ready to work offline!"
   },
-  "cards": "Cards"
+  "cards": "Cards",
+  "add_card": "Add Card",
+  "display_name": "Display Name",
+  "color": "Color",
+  "new": {
+    "camera_access_required": "Camera Access Required",
+    "camera_access_description": "To scan your membership cards, we need access to your camera.",
+    "camera_access_denied": "Camera Access Denied",
+    "camera_access_denied_description": "Camera access was denied. Please allow camera access in your browser settings or try again.",
+    "grant_access": "Grant Access",
+    "not_now": "Not Now",
+    "edit_card": "Edit Card",
+    "try_again": "Try Again",
+    "add_code": "Add Code",
+    "no_code_detected": "No code detected"
+  }
 }
