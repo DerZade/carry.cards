@@ -4,7 +4,7 @@
       class="grid grid-rows-[auto_auto] gap-1 items-stretch"
       :to="{ name: 'card', params: { id: card.id } }"
     >
-      <div class="relative rounded-lg p-2 aspect-(--card-aspect-ratio)">
+      <div class="relative rounded-lg p-2 aspect-(--card-aspect-ratio) card-transition">
         <div class="bg-white/30 absolute inset-x-0 block-start-[20%] bs-[20%]"></div>
         <component
           :is="Icon"
@@ -36,5 +36,9 @@ const labelId = useId()
 <style scoped>
 li > a > div:first-child {
   background-color: v-bind('card.color');
+}
+
+.card-transition {
+  view-transition-name: v-bind('`card-${card.id}`');
 }
 </style>

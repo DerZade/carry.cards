@@ -1,6 +1,8 @@
 <template>
   <div v-if="card" class="p-4">
-    <div class="aspect-(--card-aspect-ratio) card-bg rounded-3xl overflow-hidden relative">
+    <div
+      class="aspect-(--card-aspect-ratio) card-bg rounded-3xl overflow-hidden relative card-transition"
+    >
       <RenderedCode
         :format="card.format"
         :rawValue="card.rawValue"
@@ -44,5 +46,9 @@ watch(
 <style scoped>
 .card-bg {
   background-color: v-bind('card?.color');
+}
+
+.card-transition {
+  view-transition-name: v-bind('`card-${id}`');
 }
 </style>
