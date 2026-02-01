@@ -24,5 +24,5 @@ const { t } = useI18n({ useScope: 'global' })
 const { cards } = storeToRefs(useCardsStore())
 
 const listEl = useTemplateRef('listEl')
-useSortable(listEl, cards, { animation: 150 })
+useSortable(listEl, cards, { animation: 150, delay: 500 })
 </script>
