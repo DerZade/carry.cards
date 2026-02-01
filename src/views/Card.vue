@@ -25,6 +25,10 @@
       />
     </div>
     <menu class="grid gap-4">
+      <RouterLink class="btn-secondary" :to="{ name: 'edit', params: { id: card.id } }">
+        <Edit2 />
+        <span>{{ t('edit_card') }}</span>
+      </RouterLink>
       <button class="btn-danger" @click="showDeleteDialog = true">
         <Trash />
         <span>{{ t('delete_card') }}</span>
@@ -53,7 +57,7 @@ import { storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { Trash } from 'lucide-vue-next'
+import { Edit2, Trash } from 'lucide-vue-next'
 
 import Dialog from '@/components/Dialog.vue'
 import RenderedCode from '@/components/RenderedCode.vue'

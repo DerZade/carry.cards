@@ -41,6 +41,15 @@ const router = createRouter({
         title: 'add_card',
       },
     },
+    {
+      path: '/card/:id/edit',
+      name: 'edit',
+      component: () => import('../views/Edit.vue'),
+      props: true,
+      meta: {
+        showBack: true,
+      },
+    },
   ],
 })
 

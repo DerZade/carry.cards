@@ -23,6 +23,7 @@
     "@vueuse/core": "^14.2.0",
     "@vueuse/integrations": "^14.2.0",
     "barcode-detector": "^3.0.8",
+    "dequal": "^2.0.3",
     "lucide-vue-next": "^0.563.0",
     "pinia": "^3.0.4",
     "sortablejs": "^1.15.6",
