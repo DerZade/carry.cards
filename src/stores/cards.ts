@@ -20,5 +20,5 @@ export const useCardsStore = defineStore('cards', () => {
         cards.value.splice(index, 1, card);
     }
 
-    return { cards: readonly(cards), addCard, deleteCard, updateCard };
+    return { cards: cards, addCard, deleteCard, updateCard };
 });
