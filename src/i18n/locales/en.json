@@ -6,6 +6,12 @@
   },
   "cards": "Cards",
   "add_card": "Add Card",
+  "edit_card": "Edit Card",
+  "delete_card": "Delete Card",
+  "confirm_delete_title": "Delete Card?",
+  "confirm_delete_message": "Are you sure you want to delete '{name}'? This action cannot be undone.",
+  "cancel": "Cancel",
+  "delete": "Delete",
   "display_name": "Display Name",
   "color": "Color",
   "new": {

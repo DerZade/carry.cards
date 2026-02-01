@@ -6,6 +6,12 @@
   },
   "cards": "Karten",
   "add_card": "Karte hinzufügen",
+  "edit_card": "Karte bearbeiten",
+  "delete_card": "Karte löschen",
+  "confirm_delete_title": "Karte löschen?",
+  "confirm_delete_message": "Möchten Sie '{name}' wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
   "display_name": "Name",
   "color": "Farbe",
   "new": {

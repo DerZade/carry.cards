@@ -6,6 +6,7 @@
   --color-brand: #ded421;
   --color-background: #000;
   --color-foreground: #fff;
+  --color-danger: #ff4d4d;
 }
 
 html {
@@ -26,12 +27,20 @@ html {
   @apply btn-flat aspect-square p-2;
 }
 
+@utility btn-secondary {
+  @apply btn-base bg-foreground/10 hover:bg-foreground/20 focus-visible:bg-foreground/20 text-foreground;
+}
+
 @utility btn-primary {
   @apply btn-base bg-foreground/80 hover:bg-foreground focus-visible:bg-foreground text-background;
 }
 
 @utility btn-brand {
   @apply btn-base bg-brand/80 hover:bg-brand focus-visible:bg-brand text-background;
+}
+
+@utility btn-danger {
+  @apply btn-base bg-danger/80 hover:bg-danger focus-visible:bg-danger text-background;
 }
 
 @utility full-page-size {
