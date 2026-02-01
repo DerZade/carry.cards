@@ -16,6 +16,9 @@
   "delete": "Löschen",
   "display_name": "Name",
   "color": "Farbe",
+  "logo": "Logo",
+  "remove_image": "Bild entfernen",
+  "click_to_upload": "Klicken Sie, um ein Bild hochzuladen",
   "new": {
     "camera_access_required": "Kamerazugriff erforderlich",
     "camera_access_description": "Um Ihre Mitgliedskarten zu scannen, benötigen wir Zugriff auf Ihre Kamera.",

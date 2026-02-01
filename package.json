@@ -25,6 +25,7 @@
     "barcode-detector": "^3.0.8",
     "dequal": "^2.0.3",
     "lucide-vue-next": "^0.563.0",
+    "pathe": "^2.0.3",
     "pinia": "^3.0.4",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^4.1.18",

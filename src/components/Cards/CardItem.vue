@@ -6,6 +6,11 @@
     >
       <div class="relative rounded-lg p-2 aspect-(--card-aspect-ratio) card-transition">
         <div class="bg-white/30 absolute inset-x-0 block-start-[20%] bs-[20%]"></div>
+        <Image
+          v-if="card.logo"
+          :image="card.logo"
+          class="absolute block-end-[calc(5%*var(--card-aspect-ratio))] start-[5%] bs-[45%] is-[calc(85%-30%/var(--card-aspect-ratio))] object-contain object-bottom-left"
+        />
         <component
           :is="Icon"
           class="text-white/50 absolute block-end-[calc(5%*var(--card-aspect-ratio))] end-[5%] bs-[30%] w-auto"
@@ -23,6 +28,7 @@ import { computed, type DeepReadonly, useId } from 'vue'
 import { QrCode, Barcode } from 'lucide-vue-next'
 import type { Card } from '@/types'
 import { getCodeType } from '@/utils/code'
+import Image from '@/components/Image.vue'
 
 const props = defineProps<{
   card: DeepReadonly<Card>

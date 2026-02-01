@@ -16,6 +16,9 @@
   "delete": "Delete",
   "display_name": "Display Name",
   "color": "Color",
+  "logo": "Logo",
+  "remove_image": "Remove image",
+  "click_to_upload": "Click to upload an image",
   "new": {
     "camera_access_required": "Camera Access Required",
     "camera_access_description": "To scan your membership cards, we need access to your camera.",

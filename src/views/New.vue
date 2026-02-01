@@ -115,7 +115,14 @@ function goBack() {
 }
 
 function handleScanResult({ format, rawValue }: Pick<DetectedBarcode, 'format' | 'rawValue'>) {
-  card.value = { format, rawValue, displayName: '', color: randomColor(), id: crypto.randomUUID() }
+  card.value = {
+    format,
+    rawValue,
+    displayName: '',
+    color: randomColor(),
+    logo: null,
+    id: crypto.randomUUID(),
+  }
 }
 
 const displayNameID = useId()
