@@ -36,13 +36,13 @@ import { useI18n } from 'vue-i18n'
 import 'barcode-detector/side-effects'
 import { ScanQrCode, ScanBarcode, ScanSearch } from 'lucide-vue-next'
 
-import { getCodeType } from '@/utils/code'
+import { getCodeType, isSupportedFormat, type SupportedDetectedBarcode } from '@/utils/code'
 import type { Point2D } from 'barcode-detector'
 
 const { constraints } = defineProps<{ constraints: MediaStreamConstraints }>()
 
 const emit = defineEmits<{
-  submit: [DetectedBarcode]
+  submit: [SupportedDetectedBarcode]
 }>()
 
 const { t } = useI18n({ useScope: 'global' })
@@ -117,7 +117,7 @@ type Coord = {
 }
 
 type BarcodeState = {
-  barcode: DetectedBarcode
+  barcode: SupportedDetectedBarcode
   lastSeen: number
 }
 
@@ -131,14 +131,18 @@ const codeType = computed(() => {
 })
 
 const MAX_NOT_SEEN_FOR = 500 // ms
-const codeToKey = (code: DetectedBarcode) => `${code.format}:${code.rawValue}`
+const codeToKey = (code: SupportedDetectedBarcode) => `${code.format}:${code.rawValue}`
 
 useRafFn(
   async ({ timestamp }) => {
     if (!videoEl.value) return
     if (videoEl.value.readyState === 0) return
 
-    const detectedBarcodes = await detector.detect(videoEl.value)
+    const detectedBarcodes = await detector
+      .detect(videoEl.value)
+      .then((codes) =>
+        codes.filter((code): code is SupportedDetectedBarcode => isSupportedFormat(code.format)),
+      )
 
     if (detectedBarcodes.length === 0) {
       // No barcodes detected - remove current if it's been too long
@@ -170,7 +174,7 @@ useRafFn(
   { fpsLimit: 20 },
 )
 
-function getBiggestBarcode(codes: DetectedBarcode[]): DetectedBarcode {
+function getBiggestBarcode(codes: SupportedDetectedBarcode[]): SupportedDetectedBarcode {
   return codes.reduce((biggest, current) => {
     const biggestArea = calculateArea(biggest.cornerPoints)
     const currentArea = calculateArea(current.cornerPoints)

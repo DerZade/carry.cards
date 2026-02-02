@@ -56,6 +56,7 @@ import { randomColor } from '@/utils/colors'
 import { useEnhancedI18n } from '@/composables/useEnhancedI18n'
 import Spinner from '@/components/Spinner.vue'
 import type { Card } from '@/types'
+import type { SupportedDetectedBarcode } from '@/utils/code'
 
 const { t } = useEnhancedI18n()
 const cardsStore = useCardsStore()
@@ -114,7 +115,7 @@ function goBack() {
   router.back()
 }
 
-function handleScanResult({ format, rawValue }: Pick<DetectedBarcode, 'format' | 'rawValue'>) {
+function handleScanResult({ format, rawValue }: SupportedDetectedBarcode) {
   card.value = {
     format,
     rawValue,
