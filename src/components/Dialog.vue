@@ -1,26 +1,19 @@
 <template>
-  <Transition :css="false" appear @leave="onLeave" @afterEnter="onAfterEnter">
-    <dialog
-      v-if="visible"
-      v-bind="attrs"
-      class="rounded-2xl p-6 max-is-[90dvi] is-lg backdrop:bg-background/50 m-auto grid gap-4"
-      @close="
-        (e) => {
-          visible = false
-          emit('close', e)
-        }
-      "
-    >
-      <h2 v-if="heading" class="text-xl font-semibold">
-        {{ heading }}
-      </h2>
-      <slot />
-    </dialog>
-  </Transition>
+  <HTMLDialog
+    v-model:visible="visible"
+    :modal
+    class="rounded-2xl p-6 max-is-[90dvi] is-lg backdrop:bg-background/50 m-auto grid gap-4"
+    @close="(e) => emit('close', e)"
+  >
+    <h2 v-if="heading" class="text-xl font-semibold">
+      {{ heading }}
+    </h2>
+    <slot />
+  </HTMLDialog>
 </template>
 
 <script setup lang="ts">
-import { useAttrs } from 'vue'
+import HTMLDialog from './HTMLDialog.vue'
 
 const visible = defineModel<boolean>('visible', { required: true })
 
@@ -44,38 +37,39 @@ const emit = defineEmits<{
 defineSlots<{
   default: []
 }>()
-
-const attrs = useAttrs()
-
-function onAfterEnter(el: Element) {
-  if (!(el instanceof HTMLDialogElement)) return
-
-  if (modal) el.showModal()
-  else el.show()
-}
-
-function onLeave(el: Element, done: () => void) {
-  if (!(el instanceof HTMLDialogElement)) return
-
-  el.addEventListener('transitionend', () => done(), { once: true })
-  el.close()
-}
 </script>
 
 <style scoped>
+/* 1. Closed State */
 dialog {
+  opacity: 0;
+  scale: 0.95;
   transition:
-    opacity 200ms,
-    scale 200ms,
-    display 200ms allow-discrete;
+    opacity 200ms ease,
+    scale 200ms ease,
+    display 200ms ease allow-discrete,
+    overlay 200ms ease allow-discrete;
 }
 
 dialog::backdrop {
+  opacity: 0;
   transition:
-    opacity 200ms,
-    display 200ms allow-discrete;
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete,
+    opacity 200ms;
 }
 
+/* 2. The Open State */
+dialog[open] {
+  opacity: 1;
+  scale: 1;
+}
+
+dialog[open]::backdrop {
+  opacity: 1;
+}
+
+/* 3. Opening Animation (Entry) */
 @starting-style {
   dialog[open] {
     opacity: 0;
@@ -85,14 +79,5 @@ dialog::backdrop {
   dialog[open]::backdrop {
     opacity: 0;
   }
-}
-
-dialog:not([open]) {
-  opacity: 0;
-  scale: 0.95;
-}
-
-dialog:not([open])::backdrop {
-  opacity: 0;
 }
 </style>
