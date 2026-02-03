@@ -9,9 +9,10 @@
         <Image
           v-if="card.logo"
           :image="card.logo"
-          class="absolute block-end-[calc(5%*var(--card-aspect-ratio))] start-[5%] bs-[45%] is-[calc(85%-30%/var(--card-aspect-ratio))] object-contain object-bottom-left"
+          class="absolute block-end-[calc(5%*var(--card-aspect-ratio))] start-[5%] bs-[45%] is-[90%] object-contain object-bottom-center"
         />
         <component
+          v-else
           :is="Icon"
           class="text-white/50 absolute block-end-[calc(5%*var(--card-aspect-ratio))] end-[5%] bs-[30%] w-auto"
         />
