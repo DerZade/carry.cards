@@ -1,5 +1,5 @@
 import type { TranslationItem } from '@/composables/useEnhancedI18n'
-import { h, readonly, type Component } from 'vue'
+import { h, markRaw, readonly, type Component } from 'vue'
 import { ref } from 'vue'
 import Toaster from './Toaster.vue'
 import ToastAction from './ToastAction.vue'
@@ -36,15 +36,18 @@ const STATE = {
 const DEFAULTS: Omit<Required<ToastOptions>, 'text'> = {
   icon: null,
   duration: 3000,
-  action: ToastDismissAction,
+  action: markRaw(ToastDismissAction),
 } as const
 
 function withDefaults(options: ToastOptions): Required<ToastOptions> {
+  const icon = options.icon ? markRaw(options.icon) : DEFAULTS.icon
+  const action = options.action ? markRaw(options.action) : DEFAULTS.action
+
   return {
     text: options.text,
-    icon: options.icon ?? DEFAULTS.icon,
+    icon,
     duration: options.duration ?? DEFAULTS.duration,
-    action: options.action ?? DEFAULTS.action,
+    action,
   }
 }
 
