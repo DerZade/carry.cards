@@ -119,8 +119,6 @@ async function submit() {
     newLogo = card.value.logo ?? null
   } else if (logoBlob.value) {
     // Get file extension from blob type or default to png
-    const extension = logoBlob.value.type.split('/')[1] || 'png'
-    const logoPath = join('/', LOGO_DIRECTORY, `${id}.${extension}`)
 
     // Resize image if needed
     const {
@@ -128,6 +126,9 @@ async function submit() {
       width,
       height,
     } = await clampImageSize(logoBlob.value, MAX_LOGO_DIMENSION)
+
+    const extension = resizedBlob.type.split('/')[1]?.match(/^[a-z0-9]+/i) ?? 'png'
+    const logoPath = join('/', LOGO_DIRECTORY, `${id}.${extension}`)
 
     // Save to OPFS
     await saveFile(logoPath, resizedBlob)
