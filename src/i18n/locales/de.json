@@ -6,6 +6,7 @@
   },
   "cards": "Karten",
   "add_card": "Karte hinzufügen",
+  "edit": "Bearbeiten",
   "edit_card": "Karte bearbeiten",
   "delete_card": "Karte löschen",
   "confirm_delete_title": "Karte löschen?",
@@ -26,7 +27,6 @@
     "camera_access_denied_description": "Der Kamerazugriff wurde verweigert. Bitte erlauben Sie den Kamerazugriff in Ihren Browsereinstellungen oder versuchen Sie es erneut.",
     "grant_access": "Zugriff gewähren",
     "not_now": "Nicht jetzt",
-    "edit_card": "Karte bearbeiten",
     "try_again": "Erneut versuchen",
     "add_code": "Code hinzufügen",
     "no_code_detected": "Kein Code erkannt"

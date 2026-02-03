@@ -2,7 +2,7 @@
   <div class="grid gap-2">
     <div
       v-if="previewUrl"
-      class="relative rounded-lg border-2 p-4 flex items-center justify-center"
+      class="relative rounded-md border border-border bg-surface p-4 flex items-center justify-center shadow-sm"
     >
       <img :src="previewUrl" alt="Preview" class="max-is-full max-bs-32 object-contain" />
       <button
@@ -17,7 +17,7 @@
     <label
       v-else
       :for="inputId"
-      class="cursor-pointer rounded-lg border-2 border-dashed p-8 grid items-center justify-items-center gap-2 hover:bg-foreground/10 transition-colors"
+      class="cursor-pointer rounded-md border border-border bg-surface px-4 py-8 grid items-center justify-items-center gap-2 hover:border-foreground-muted transition-all shadow-sm outline-none"
     >
       <Upload :size="32" class="text-foreground/60" />
       <span class="text-sm text-foreground/60">{{ t('click_to_upload') }}</span>

@@ -48,6 +48,7 @@ const router = createRouter({
       props: true,
       meta: {
         showBack: true,
+        title: 'edit_card',
       },
     },
   ],

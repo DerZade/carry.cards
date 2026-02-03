@@ -1,4 +1,4 @@
-export const MAX_LOGO_DIMENSION = 150 * window.devicePixelRatio
+export const MAX_LOGO_DIMENSION = (window.screen.availWidth / 2) * window.devicePixelRatio
 
 /**
  * Resizes an image to fit within MAX_LOGO_DIMENSION while maintaining aspect ratio

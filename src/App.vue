@@ -1,14 +1,19 @@
 <template>
   <nav
-    class="grid items-center gap-2 min-bs-14 p-2 grid-cols-[theme(size.9)_1fr_theme(size.9)] sticky block-start-0 bg-background z-10"
+    class="grid items-center gap-2 min-bs-[--spacing(18)] p-4 grid-cols-[.5fr_auto_.5fr] sticky block-start-0 bg-background z-10"
   >
-    <button v-if="route.meta['showBack']" class="btn-icon" @click="router.back()">
-      <ChevronLeft class="size-4" />
+    <button
+      v-if="route.meta['showBack']"
+      class="btn-icon justify-self-start"
+      @click="router.back()"
+    >
+      <ChevronLeft class="size-6" />
     </button>
     <h1 v-if="title || route.meta['title']" class="col-start-2 truncate text-lg text-center">
       <span v-if="title">{{ title }}</span>
       <span v-else-if="typeof route.meta['title'] === 'string'">{{ t(route.meta['title']) }}</span>
     </h1>
+    <div id="header-end" class="col-start-3 justify-self-end"></div>
   </nav>
   <main>
     <RouterView @update:title="title = $event" />

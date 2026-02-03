@@ -3,10 +3,25 @@
 
 @theme {
   --color-scheme: dark;
-  --color-brand: #ded421;
-  --color-background: #000;
-  --color-foreground: #fff;
-  --color-danger: #ff4d4d;
+
+  /* Backgrounds */
+  --color-background: #0f1115;
+  --color-surface: #1c1f26;
+  --color-border: #2d3139;
+
+  /* Brand Colors */
+  --color-brand: #f59e0b; /* Amber Gold */
+  --color-on-brand: #0f1115; /* Dark text for use on Amber buttons */
+  --color-secondary: #64748b; /* Steel Blue */
+  --color-accent: #f97316; /* Ember Orange */
+
+  /* Typography */
+  --color-foreground: #f8fafc;
+  --color-foreground-muted: #94a3b8;
+
+  /* Status */
+  --color-success: #10b981;
+  --color-danger: #ef4444;
 }
 
 html {
@@ -16,35 +31,42 @@ html {
 }
 
 @utility btn-base {
-  @apply rounded-md px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2;
+  @apply rounded-md font-bold px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2 transition-colors;
 }
 
 @utility btn-flat {
-  @apply btn-base hover:bg-foreground/20 focus-visible:bg-foreground/20;
+  @apply btn-base text-foreground focus-visible:bg-foreground/20 hover:bg-foreground/20;
+}
+
+@utility btn-flat-* {
+  @apply btn-base transition-colors;
+
+  color: --value(--color-*);
+
+  &:focus-visible,
+  &:hover {
+    background-color: --alpha(--value(--color-*) / 20%);
+  }
 }
 
 @utility btn-icon {
   @apply btn-flat aspect-square p-2;
 }
 
-@utility btn-secondary {
-  @apply btn-base bg-foreground/10 hover:bg-foreground/20 focus-visible:bg-foreground/20 text-foreground;
-}
-
 @utility btn-primary {
-  @apply btn-base bg-foreground/80 hover:bg-foreground focus-visible:bg-foreground text-background;
+  @apply btn-base bg-foreground hover:brightness-90 focus-visible:brightness-90 text-background;
 }
 
 @utility btn-brand {
-  @apply btn-base bg-brand/80 hover:bg-brand focus-visible:bg-brand text-background;
+  @apply btn-base bg-brand hover:brightness-110 focus-visible:brightness-110 text-on-brand;
 }
 
 @utility btn-danger {
-  @apply btn-base bg-danger/80 hover:bg-danger focus-visible:bg-danger text-background;
+  @apply btn-base bg-danger hover:brightness-110 focus-visible:brightness-110 text-background;
 }
 
 @utility full-page-size {
-  block-size: calc(100dvb - --spacing(14));
+  block-size: calc(100dvb - --spacing(18));
 }
 
 :root {
@@ -84,7 +106,7 @@ input[type='number'],
 input[type='password'],
 input[type='color'],
 textarea {
-  @apply w-full placeholder:text-foreground/40 text-foreground border border-foreground/40 rounded-md px-3 py-2 transition duration-300 ease-[ease] focus:outline-none focus:border-foreground hover:border-foreground shadow-sm focus:shadow;
+  @apply w-full px-4 py-2.5 bg-surface border border-border text-foreground placeholder:text-foreground-muted rounded-md transition-all outline-none hover:border-foreground-muted focus:border-brand shadow-sm focus:shadow-lg;
 }
 
 input[type='color'] {

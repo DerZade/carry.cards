@@ -3,7 +3,7 @@
   <div
     v-else
     :style="{ width: `${image.width}px`, height: `${image.height}px` }"
-    class="bg-foreground/10 border border-foreground/20"
+    class="bg-surface border border-foreground-muted"
     v-bind="$attrs"
   />
 </template>

@@ -1,4 +1,7 @@
 <template>
+  <Teleport to="#header-end">
+    <button type="button" class="btn-brand" @click="submit">{{ t('save') }}</button>
+  </Teleport>
   <form v-if="card" class="px-4 grid gap-1 content-start full-page-size" @submit.prevent="submit">
     <label :for="displayNameID">{{ t('display_name') }}</label>
     <input
@@ -14,8 +17,25 @@
     <input :id="colorID" type="color" v-model="color" required class="mbe-4" />
     <label>{{ t('logo') }}</label>
     <ImageUpload v-model="logoBlob" class="mbe-4" />
-    <button type="submit" class="btn-primary mbs-4">{{ t('save') }}</button>
+
+    <button type="button" class="btn-flat-danger mbs-4" @click="showDeleteDialog = true">
+      <Trash />
+      <span>{{ t('delete_card') }}</span>
+    </button>
   </form>
+  <Dialog v-model:visible="showDeleteDialog" :heading="t('confirm_delete_title')">
+    <p class="text-foreground-muted">
+      {{ t('confirm_delete_message', { name: card?.displayName }) }}
+    </p>
+    <menu class="grid grid-cols-2 gap-3">
+      <button class="btn-flat" @click="showDeleteDialog = false">
+        {{ t('cancel') }}
+      </button>
+      <button class="btn-danger" @click="deleteCard">
+        {{ t('delete') }}
+      </button>
+    </menu>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -31,18 +51,16 @@ import {
   useRouter,
   type RouteLocationNormalized,
 } from 'vue-router'
+import { Trash } from 'lucide-vue-next'
 import { saveFile, LOGO_DIRECTORY, getFile } from '@/utils/storage'
 import { clampImageSize, MAX_LOGO_DIMENSION } from '@/utils/image'
 import type { StoredImage } from '@/types'
 import ImageUpload from '@/components/ImageUpload.vue'
+import Dialog from '@/components/Dialog.vue'
 import { join } from 'pathe'
 
 const props = defineProps<{
   id: string
-}>()
-
-const emit = defineEmits<{
-  'update:title': [string]
 }>()
 
 const { t } = useI18n()
@@ -56,11 +74,6 @@ const card = computed(() => cards.value.find((card) => card.id === props.id))
 const displayName = ref('')
 const color = ref('#ffffff')
 const logoBlob = ref<Blob | null>(null)
-
-watch(displayName, (val) => {
-  if (!card.value) return
-  emit('update:title', val)
-})
 
 watch(
   card,
@@ -89,16 +102,6 @@ watch(
 watch(currentLogoBlob, (val) => {
   logoBlob.value = val
 })
-
-watch(
-  card,
-  (val) => {
-    if (!val) return
-
-    emit('update:title', val.displayName)
-  },
-  { immediate: true },
-)
 
 const displayNameID = useId()
 const colorID = useId()
@@ -174,4 +177,12 @@ useEventListener('beforeunload', (e: BeforeUnloadEvent) => {
   if (!unsavedChanges.value) return
   e.preventDefault()
 })
+
+const showDeleteDialog = ref(false)
+
+function deleteCard() {
+  if (!card.value) return
+  store.deleteCard({ id: card.value.id })
+  router.replace({ name: 'cards' })
+}
 </script>

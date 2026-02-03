@@ -6,6 +6,7 @@
   },
   "cards": "Cards",
   "add_card": "Add Card",
+  "edit": "Edit",
   "edit_card": "Edit Card",
   "delete_card": "Delete Card",
   "confirm_delete_title": "Delete Card?",
@@ -26,7 +27,6 @@
     "camera_access_denied_description": "Camera access was denied. Please allow camera access in your browser settings or try again.",
     "grant_access": "Grant Access",
     "not_now": "Not Now",
-    "edit_card": "Edit Card",
     "try_again": "Try Again",
     "add_code": "Add Code",
     "no_code_detected": "No code detected"

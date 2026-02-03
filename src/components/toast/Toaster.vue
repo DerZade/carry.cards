@@ -8,7 +8,7 @@
       <li
         v-for="{ id, icon, text, action } in toasts"
         :key="id"
-        class="flex items-center gap-3 bg-background border border-foreground/20 rounded-lg px-4 py-3 min-is-0 max-is-md is-full pointer-events-auto shadow-lg mbe-2"
+        class="flex items-center gap-3 bg-surface border border-border rounded-lg px-4 py-3 min-is-0 max-is-md is-full pointer-events-auto shadow-lg mbe-2"
       >
         <component :is="icon" v-if="icon" class="shrink-0" />
         <span class="flex-1 text-foreground">{{ text }}</span>

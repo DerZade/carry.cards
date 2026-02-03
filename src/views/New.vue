@@ -5,18 +5,18 @@
   >
     <Spinner v-if="permission === null" class="text-5xl" />
     <template v-else-if="permission === 'denied'">
-      <TriangleAlert class="size-12 text-red-600 dark:text-red-400" />
+      <TriangleAlert class="size-12 text-danger" />
       <h2 class="text-2xl font-bold mb-2">{{ t('new.camera_access_denied') }}</h2>
-      <p class="text-foreground/70">
+      <p class="text-foreground-muted">
         {{ t('new.camera_access_denied_description') }}
       </p>
       <button @click="requestPermission" class="btn-primary">{{ t('new.try_again') }}</button>
       <button @click="goBack" class="btn-flat">{{ t('new.not_now') }}</button>
     </template>
     <template v-else-if="permission === 'prompt'">
-      <Camera class="size-12 text-primary" />
-      <h2 class="text-2xl font-bold mb-2">{{ t('new.camera_access_required') }}</h2>
-      <p class="text-foreground/70">
+      <Camera class="size-12 text-foreground-muted" />
+      <h2 class="text-2xl font-bold mbe-2">{{ t('new.camera_access_required') }}</h2>
+      <p class="text-foreground-muted">
         {{ t('new.camera_access_description') }}
       </p>
       <button @click="requestPermission" class="btn-primary">{{ t('new.grant_access') }}</button>
@@ -26,7 +26,7 @@
   <Scanner v-else-if="!card" class="full-page-size" :constraints @submit="handleScanResult" />
   <form
     v-else
-    class="px-4 grid gap-1 content-start full-page-size"
+    class="px-4 grid gap-2 content-start full-page-size"
     @reset.prevent="card = null"
     @submit.prevent="addCard"
   >
@@ -42,7 +42,7 @@
     />
     <label :for="colorID">{{ t('color') }}</label>
     <input :id="colorID" type="color" v-model="card.color" required class="w-full mbe-4" />
-    <button type="submit" class="btn-primary mbs-4">{{ t('add_card') }}</button>
+    <button type="submit" class="btn-brand">{{ t('add_card') }}</button>
     <button type="reset" class="btn-flat">{{ t('new.try_again') }}</button>
   </form>
 </template>

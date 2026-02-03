@@ -2,7 +2,7 @@
   <HTMLDialog
     v-model:visible="visible"
     :modal
-    class="rounded-2xl p-6 max-is-[90dvi] is-lg backdrop:bg-background/50 m-auto grid gap-4"
+    class="rounded-2xl p-6 max-is-[90dvi] is-lg backdrop:bg-background/50 bg-surface m-auto grid gap-4"
     @close="(e) => emit('close', e)"
   >
     <h2 v-if="heading" class="text-xl font-semibold">

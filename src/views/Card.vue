@@ -2,52 +2,43 @@
   <template v-if="!card">
     <Spinner class="m-4" />
   </template>
-  <div
-    v-else-if="fullscreen"
-    class="fixed inset-0 bg-red isolate z-100 overflow-hidden"
-    @click="fullscreen = false"
-  >
-    <RenderedCode
-      :format="card.format"
-      :rawValue="card.rawValue"
-      class="h-dvw w-dvh origin-top-left transform-[rotate(90deg)_translateY(-100%)]"
-    />
-  </div>
-  <div v-else class="p-4 grid gap-8">
-    <div
-      class="aspect-(--card-aspect-ratio) card-bg rounded-3xl overflow-hidden relative card-transition"
-    >
-      <RenderedCode
-        @click="fullscreen = true"
-        :format="card.format"
-        :rawValue="card.rawValue"
-        class="absolute rounded-xl inset-x-[10%] inset-y-[calc(10%*var(--card-aspect-ratio))]"
-      />
-    </div>
-    <menu class="grid gap-4">
-      <RouterLink class="btn-secondary" :to="{ name: 'edit', params: { id: card.id } }">
-        <Edit2 />
-        <span>{{ t('edit_card') }}</span>
+  <div v-else class="p-4 pbs-0 grid overflow-hidden">
+    <Teleport to="#header-end">
+      <RouterLink class="btn-flat-brand" :to="{ name: 'edit', params: { id: card.id } }">
+        {{ t('edit') }}
       </RouterLink>
-      <button class="btn-danger" @click="showDeleteDialog = true">
-        <Trash />
-        <span>{{ t('delete_card') }}</span>
-      </button>
-    </menu>
-
-    <Dialog v-model:visible="showDeleteDialog" :heading="t('confirm_delete_title')">
-      <p class="text-foreground/60">
-        {{ t('confirm_delete_message', { name: card?.displayName }) }}
-      </p>
-      <menu class="grid grid-cols-2 gap-3">
-        <button class="btn-secondary" @click="showDeleteDialog = false">
-          {{ t('cancel') }}
-        </button>
-        <button class="btn-danger" @click="deleteCard">
-          {{ t('delete') }}
-        </button>
-      </menu>
-    </Dialog>
+    </Teleport>
+    <FullscreenCode v-model:visible="fullscreen" :format="card.format" :rawValue="card.rawValue" />
+    <div
+      class="aspect-(--card-aspect-ratio) rounded-2xl overflow-hidden grid grid-rows-[1fr_2fr] card-transition shadow-lg"
+      style="container-type: inline-size"
+    >
+      <header class="card-bg overflow-hidden flex justify-center p-2">
+        <Image v-if="card.logo" :image="card.logo" class="self-stretch is-auto" />
+        <h2
+          v-else
+          class="text-[clamp(1rem,7cqi,5rem)] overflow-hidden text-ellipsis self-center text-center"
+        >
+          {{ card.displayName }}
+        </h2>
+      </header>
+      <main
+        class="cursor-zoom-in bg-white p-3 grid grid-rows-[1fr_auto] grid-cols-[1fr_auto_1fr] gap-1 overflow-hidden justify-items-center"
+        @click="fullscreen = true"
+      >
+        <RenderedCode
+          :format="card.format"
+          :rawValue="card.rawValue"
+          class="overflow-hidden max-bs-full col-start-1 col-end-4"
+        />
+        <FormattedValue
+          :format="card.format"
+          :rawValue="card.rawValue"
+          class="text-black text-center text-[clamp(1rem,5cqi,5rem)] col-start-2 overflow-hidden text-ellipsis max-is-full"
+        />
+        <Maximize2 class="text-neutral-400 pointer-events-none justify-self-end self-end" />
+      </main>
+    </div>
   </div>
 </template>
 
@@ -56,13 +47,14 @@ import { useCardsStore } from '@/stores/cards'
 import { storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
-import { Edit2, Trash } from 'lucide-vue-next'
+import { Maximize2 } from 'lucide-vue-next'
 
-import Dialog from '@/components/Dialog.vue'
 import RenderedCode from '@/components/RenderedCode.vue'
 import Spinner from '@/components/Spinner.vue'
 import { computedWithControl } from '@vueuse/core'
+import Image from '@/components/Image.vue'
+import FullscreenCode from '@/components/Card/FullscreenCode.vue'
+import FormattedValue from '@/components/FormattedValue.vue'
 
 const props = defineProps<{
   id: string
@@ -73,7 +65,6 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const router = useRouter()
 
 const store = useCardsStore()
 const { cards } = storeToRefs(store)
@@ -85,24 +76,16 @@ const card = computedWithControl(
   () => cards.value.find((card) => card.id === props.id),
 )
 
+const fullscreen = ref(false)
+
 watch(
   card,
   (val) => {
     if (!val) return
-
-    emit('update:title', val.displayName)
+    emit('update:title', val?.displayName)
   },
   { immediate: true },
 )
-
-const fullscreen = ref(false)
-const showDeleteDialog = ref(false)
-
-function deleteCard() {
-  if (!card.value) return
-  store.deleteCard({ id: card.value.id })
-  router.replace({ name: 'cards' })
-}
 </script>
 
 <style scoped>

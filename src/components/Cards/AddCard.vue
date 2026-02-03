@@ -2,7 +2,7 @@
   <RouterLink
     to="/new"
     :aria-label="t('add_card')"
-    class="aspect-(--card-aspect-ratio) grid rounded-lg border-2 border-dashed border-foreground/70 opacity-60 hover:opacity-100 focus-visible:opacity-100 active:opacity-100 justify-center items-center p-2 cursor-pointer outline-none"
+    class="aspect-(--card-aspect-ratio) grid rounded-lg border-2 border-dashed text-foreground-muted border-current hover:text-foreground focus-visible:text-foreground active:text-foreground place-content-center cursor-pointer outline-none transition-colors"
   >
     <Plus />
   </RouterLink>
