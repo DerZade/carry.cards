@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, from, savedPosition) {
     if (savedPosition && from !== START_LOCATION) {
       return savedPosition
     } else {
@@ -54,7 +54,7 @@ const router = createRouter({
   ],
 })
 
-router.beforeResolve((to, from, next) => {
+router.beforeResolve((_to, _from, next) => {
   if (!document.startViewTransition) {
     next()
     return

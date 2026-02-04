@@ -1,4 +1,3 @@
-import { readonly } from 'vue'
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core'
 import type { Card } from '@/types'
