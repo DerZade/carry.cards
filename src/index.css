@@ -4,6 +4,10 @@
 @theme {
   --color-scheme: dark;
 
+  --font-sans: Inter, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: Archivo, sans-serif;
+
   /* Backgrounds */
   --color-background: #0f1115;
   --color-surface: #1c1f26;
@@ -24,6 +28,58 @@
   --color-danger: #ef4444;
 }
 
+@font-face {
+  font-family: 'Archivo';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: local('Archivo'), url('@/assets/fonts/Archivo.ttf');
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: local('Archivo'), url('@/assets/fonts/Archivo-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: local('Inter'), url('@/assets/fonts/Inter.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: local('Inter'), url('@/assets/fonts/Inter-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+  src: local('JetBrains Mono'), url('@/assets/fonts/JetBrainsMono.ttf');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100 900;
+  src: local('JetBrains Mono'), url('@/assets/fonts/JetBrainsMono-Italic.ttf');
+}
+
 html {
   color-scheme: dark;
   background: var(--color-background);
@@ -31,7 +87,7 @@ html {
 }
 
 @utility btn-base {
-  @apply rounded-md font-bold px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2 transition-colors;
+  @apply font-heading rounded-md font-bold px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2 transition-colors;
 }
 
 @utility btn-flat {

@@ -17,7 +17,7 @@
           class="text-white/50 absolute block-end-[calc(5%*var(--card-aspect-ratio))] end-[5%] bs-[30%] w-auto"
         />
       </div>
-      <span :id="labelId" class="text-center font-semibold truncate text-sm">{{
+      <span :id="labelId" class="text-center font-semibold truncate text-sm font-heading">{{
         card.displayName
       }}</span>
     </RouterLink>

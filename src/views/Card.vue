@@ -17,7 +17,7 @@
         <Image v-if="card.logo" :image="card.logo" class="self-stretch is-auto" />
         <h2
           v-else
-          class="text-[clamp(1rem,7cqi,5rem)] overflow-hidden text-ellipsis self-center text-center"
+          class="text-[clamp(1rem,7cqi,5rem)] overflow-hidden text-ellipsis self-center text-center font-heading font-semibold"
         >
           {{ card.displayName }}
         </h2>

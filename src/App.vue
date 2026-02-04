@@ -9,7 +9,11 @@
     >
       <ChevronLeft class="size-6" />
     </button>
-    <h1 v-if="title || route.meta['title']" class="col-start-2 truncate text-lg text-center">
+    <h1
+      v-if="title || route.meta['title']"
+      class="col-start-2 truncate text-lg text-center font-heading font-bold"
+      style="letter-spacing: 0.05em"
+    >
       <span v-if="title">{{ title }}</span>
       <span v-else-if="typeof route.meta['title'] === 'string'">{{ t(route.meta['title']) }}</span>
     </h1>
