@@ -1,11 +1,6 @@
 <template>
   <img v-if="url" :src="url" :width="image.width" :height="image.height" v-bind="$attrs" />
-  <div
-    v-else
-    :style="{ width: `${image.width}px`, height: `${image.height}px` }"
-    class="bg-surface border border-foreground-muted"
-    v-bind="$attrs"
-  />
+  <div v-else class="border border-foreground-muted" v-bind="$attrs" />
 </template>
 
 <script setup lang="ts">
