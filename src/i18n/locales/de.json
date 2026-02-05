@@ -4,6 +4,12 @@
     "update_now": "Jetzt aktualisieren",
     "ready_to_work_offline": "Bereit zum Offline-Arbeiten!"
   },
+  "file_not_persisted": {
+    "heading": "Datei könnte gelöscht werden",
+    "body": "Dein Browser erlaubt es nicht, Dateien dauerhaft zu speichern.\n\nDie Datei könnte jederzeit vom Browser ungefragt gelöscht werden!\n\nMöchtest du sie trotzdem speichern?",
+    "do_not_ask_again": "Nicht noch einmal fragen"
+  },
+  "save_anyway": "Trotzdem speichern",
   "cards": "Karten",
   "add_card": "Karte hinzufügen",
   "edit": "Bearbeiten",

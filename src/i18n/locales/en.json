@@ -4,6 +4,12 @@
     "update_now": "Update now",
     "ready_to_work_offline": "Ready to work offline!"
   },
+  "file_not_persisted": {
+    "heading": "File might be deleted",
+    "body": "Your browser does not allow to save files persistently.\n\nThe file might be deleted by the browser without asking! Do you want to save it anyway?",
+    "do_not_ask_again": "Do not ask again"
+  },
+  "save_anyway": "Save anyway",
   "cards": "Cards",
   "add_card": "Add Card",
   "edit": "Edit",

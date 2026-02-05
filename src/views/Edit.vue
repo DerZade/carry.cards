@@ -52,12 +52,13 @@ import {
   type RouteLocationNormalized,
 } from 'vue-router'
 import { Trash } from 'lucide-vue-next'
-import { saveFile, LOGO_DIRECTORY, getFile } from '@/utils/storage'
+import { LOGO_DIRECTORY, getFile } from '@/utils/storage'
 import { clampImageSize, MAX_LOGO_DIMENSION } from '@/utils/image'
 import type { StoredImage } from '@/types'
 import ImageUpload from '@/components/ImageUpload.vue'
 import Dialog from '@/components/Dialog.vue'
 import { join } from 'pathe'
+import { useSaveFile } from '@/composables/useSaveFile'
 
 const props = defineProps<{
   id: string
@@ -106,6 +107,8 @@ watch(currentLogoBlob, (val) => {
 const displayNameID = useId()
 const colorID = useId()
 
+const { saveFile } = useSaveFile()
+
 async function submit() {
   if (!card.value) return
 
@@ -131,7 +134,8 @@ async function submit() {
     const logoPath = join('/', LOGO_DIRECTORY, `${id}.${extension}`)
 
     // Save to OPFS
-    await saveFile(logoPath, resizedBlob)
+    const saved = await saveFile(logoPath, resizedBlob)
+    if (!saved) return
 
     newLogo = { path: logoPath, width, height }
   }

@@ -84,6 +84,7 @@ html {
   color-scheme: dark;
   background: var(--color-background);
   color: var(--color-foreground);
+  accent-color: var(--color-brand);
 }
 
 @utility btn-base {

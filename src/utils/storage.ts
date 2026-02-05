@@ -7,9 +7,54 @@ import { sep, isAbsolute, dirname, basename } from 'pathe'
 
 export const LOGO_DIRECTORY = 'logos'
 
-const isPersistedStorageCached = false
-async function isPersistedStorage(): Promise<boolean> {
-  return isPersistedStorageCached || navigator.storage?.persisted()
+let isPersistedStorageCached = false
+
+/**
+ * Attempts to enable persistent storage for the application.
+ *
+ * This function checks if persistent storage is already enabled or cached. If not,
+ * it attempts to request persistent storage permission from the browser.
+ *
+ * @returns A promise that resolves to `true` if persistent storage is enabled or was
+ * successfully granted, `false` otherwise. Also returns `false` if the Storage API
+ * is not supported by the browser.
+ *
+ * @remarks
+ * - Uses a cache to avoid redundant checks if persistence is already confirmed
+ * - Requires the Storage API to be available in the browser
+ * - The browser may deny the persistence request based on its own heuristics
+ *
+ * @example
+ * ```typescript
+ * const isStoragePersisted = await tryPersistedStorage();
+ * if (isStoragePersisted) {
+ *   console.log('Storage will not be cleared automatically');
+ * }
+ * ```
+ */
+export async function tryToPersistStorage(): Promise<boolean> {
+  if (isPersistedStorageCached) return true
+
+  const isPersisted = await navigator.storage?.persisted?.()
+  if (isPersisted === undefined) return false
+  if (isPersisted) {
+    isPersistedStorageCached = true
+    return true
+  }
+
+  const isGranted = await navigator.storage?.persist?.()
+  if (isGranted) {
+    isPersistedStorageCached = true
+    return true
+  }
+
+  return false
+}
+
+export class NotPersistentStorageError extends Error {
+  constructor() {
+    super('Persistent storage could not be granted')
+  }
 }
 
 /**
@@ -78,6 +123,7 @@ export async function getFile(absFilePath: string): Promise<Blob | null> {
  * @param data - The data to write to the file. Can be a string, BufferSource, Blob, or WriteParams object.
  *
  * @throws {Error} If the provided path is not an absolute path.
+ * @throws {NotPersistentStorageError} If persistent storage could not be granted.
  *
  * @returns A Promise that resolves when the file has been successfully written and closed.
  *
@@ -95,9 +141,8 @@ export async function saveFile(path: string, data: FileSystemWriteChunkType): Pr
   await writable.write(data)
   await writable.close()
 
-  if (!(await isPersistedStorage())) {
-    await navigator.storage.persist()
-  }
+  const isPersisted = await tryToPersistStorage()
+  if (!isPersisted) throw new NotPersistentStorageError()
 }
 
 /**
