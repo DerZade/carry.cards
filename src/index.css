@@ -87,7 +87,7 @@ html {
 }
 
 @utility btn-base {
-  @apply font-heading rounded-md font-bold px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2 transition-colors;
+  @apply font-heading rounded-md font-bold px-4 py-2 outline-none cursor-pointer flex items-center justify-center gap-2 transition-colors disabled:pointer-events-none disabled:opacity-50;
 }
 
 @utility btn-flat {
@@ -111,6 +111,10 @@ html {
 
 @utility btn-primary {
   @apply btn-base bg-foreground hover:brightness-90 focus-visible:brightness-90 text-background;
+}
+
+@utility btn-foreground {
+  @apply btn-primary;
 }
 
 @utility btn-brand {

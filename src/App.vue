@@ -22,6 +22,7 @@
   <main>
     <RouterView @update:title="title = $event" />
   </main>
+  <PopupHandler />
   <Toaster />
 </template>
 
@@ -32,6 +33,7 @@ import { RouterView, useRoute, useRouter } from 'vue-router'
 import { ChevronLeft, WifiOff } from 'lucide-vue-next'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { toastAction, Toaster, useToast } from '@/components/toast'
+import { PopupHandler } from './components/popup'
 
 const route = useRoute()
 
