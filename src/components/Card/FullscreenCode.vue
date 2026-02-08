@@ -15,7 +15,11 @@
         :width="windowMax"
       />
     </div>
-    <FormattedValue class="text-black text-center text-3xl shrink-0" :rawValue :format />
+    <FormattedValue
+      class="text-black text-center text-3xl shrink-0 overflow-hidden wrap-anywhere text-wrap"
+      :rawValue
+      :format
+    />
   </HTMLDialog>
 </template>
 
