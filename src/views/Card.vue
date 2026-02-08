@@ -29,7 +29,7 @@
         <RenderedCode
           :format="card.format"
           :rawValue="card.rawValue"
-          class="overflow-hidden max-bs-full col-start-1 col-end-4"
+          class="overflow-hidden max-bs-full col-start-1 col-end-4 self-stretch"
         />
         <FormattedValue
           :format="card.format"
