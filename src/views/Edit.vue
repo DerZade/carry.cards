@@ -18,24 +18,11 @@
     <label>{{ t('logo') }}</label>
     <ImageUpload v-model="logoBlob" class="mbe-4" />
 
-    <button type="button" class="btn-flat-danger mbs-4" @click="showDeleteDialog = true">
+    <button type="button" class="btn-flat-danger mbs-4" @click="deleteCard">
       <Trash />
       <span>{{ t('delete_card') }}</span>
     </button>
   </form>
-  <Dialog v-model:visible="showDeleteDialog" :heading="t('confirm_delete_title')">
-    <p class="text-foreground-muted">
-      {{ t('confirm_delete_message', { name: card?.displayName }) }}
-    </p>
-    <menu class="grid grid-cols-2 gap-3">
-      <button class="btn-flat" @click="showDeleteDialog = false">
-        {{ t('cancel') }}
-      </button>
-      <button class="btn-danger" @click="deleteCard">
-        {{ t('delete') }}
-      </button>
-    </menu>
-  </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -56,9 +43,9 @@ import { LOGO_DIRECTORY, getFile } from '@/utils/storage'
 import { clampImageSize, MAX_LOGO_DIMENSION } from '@/utils/image'
 import type { StoredImage } from '@/types'
 import ImageUpload from '@/components/ImageUpload.vue'
-import Dialog from '@/components/Dialog.vue'
 import { join } from 'pathe'
 import { useSaveFile } from '@/composables/useSaveFile'
+import { usePopup, UserAbortError } from '@/components/popup'
 
 const props = defineProps<{
   id: string
@@ -183,10 +170,24 @@ useEventListener('beforeunload', (e: BeforeUnloadEvent) => {
   e.preventDefault()
 })
 
-const showDeleteDialog = ref(false)
+const { confirm } = usePopup()
 
-function deleteCard() {
+async function deleteCard() {
   if (!card.value) return
+
+  try {
+    await confirm({
+      heading: t('confirm_delete_title'),
+      body: t('confirm_delete_message', { name: card.value.displayName }),
+      primaryAction: t('delete'),
+      destructive: true,
+    })
+  } catch (err) {
+    if (err instanceof UserAbortError) return
+
+    throw err
+  }
+
   store.deleteCard({ id: card.value.id })
   router.replace({ name: 'cards' })
 }
