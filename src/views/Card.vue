@@ -9,6 +9,7 @@
       </RouterLink>
     </Teleport>
     <FullscreenCode v-model:visible="fullscreen" :format="card.format" :rawValue="card.rawValue" />
+    <FullscreenImageDialog v-model="fullscreenImage" />
     <div
       class="aspect-(--card-aspect-ratio) rounded-2xl overflow-hidden grid grid-rows-[1fr_2fr] card-transition shadow-lg"
       style="container-type: inline-size"
@@ -46,11 +47,13 @@
         :modelValue="card.frontImage"
         :fileName="card.id + '-front'"
         @update:modelValue="(img) => updateImage(img, 'front')"
+        @open="fullscreenImage = $event"
       />
       <PhysicalCardPhoto
         :modelValue="card.backImage"
         :fileName="card.id + '-back'"
         @update:modelValue="(img) => updateImage(img, 'back')"
+        @open="fullscreenImage = $event"
       />
       <label class="text-sm text-foreground text-center">{{ t('front_image') }}</label>
       <label class="text-sm text-foreground text-center">{{ t('back_image') }}</label>
@@ -70,6 +73,7 @@ import RenderedCode from '@/components/RenderedCode.vue'
 import Spinner from '@/components/Spinner.vue'
 import Image from '@/components/Image.vue'
 import FullscreenCode from '@/components/Card/FullscreenCode.vue'
+import FullscreenImageDialog from '@/components/Card/FullscreenImageDialog.vue'
 import FormattedValue from '@/components/FormattedValue.vue'
 import PhysicalCardPhoto from '@/components/Card/PhysicalCardPhoto.vue'
 
@@ -94,6 +98,7 @@ function updateThisCard() {
 }
 watch(() => props.id, updateThisCard, { immediate: true })
 
+const fullscreenImage = ref<StoredImage | null>(null)
 const fullscreen = ref(false)
 
 watch(

@@ -2,6 +2,7 @@
   <div
     v-if="modelValue"
     class="aspect-(--card-aspect-ratio) rounded-lg cursor-pointer overflow-hidden grid place-content-center relative"
+    @click="emit('open', modelValue)"
   >
     <Image :image="modelValue" class="absolute inset-0 bs-full is-full object-cover" />
     <button
@@ -39,6 +40,10 @@ import { clampImageSize } from '@/utils/image'
 
 const { fileName } = defineProps<{
   fileName: string
+}>()
+
+const emit = defineEmits<{
+  open: [StoredImage]
 }>()
 
 const modelValue = defineModel<StoredImage | null | undefined>()
