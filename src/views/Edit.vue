@@ -129,6 +129,7 @@ async function submit() {
   // else: logoBlob.value is null, meaning logo was removed - newLogo stays null
 
   await store.updateCard({
+    ...card.value,
     id,
     format,
     rawValue,

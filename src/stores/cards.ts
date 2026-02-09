@@ -22,6 +22,23 @@ export const useCardsStore = defineStore('cards', () => {
       }
     }
 
+    // Clean up physical card images if they exist
+    if (card?.frontImage?.path) {
+      try {
+        await deleteFile(card.frontImage.path)
+      } catch (error) {
+        console.error('Failed to delete front image file:', error)
+      }
+    }
+
+    if (card?.backImage?.path) {
+      try {
+        await deleteFile(card.backImage.path)
+      } catch (error) {
+        console.error('Failed to delete back image file:', error)
+      }
+    }
+
     cards.value = cards.value.filter((card) => card.id !== id)
   }
 
@@ -35,6 +52,24 @@ export const useCardsStore = defineStore('cards', () => {
         await deleteFile(oldCard.logo.path)
       } catch (error) {
         console.error('Failed to delete old logo file:', error)
+      }
+    }
+
+    // Clean up old front image if it's being replaced or removed
+    if (oldCard?.frontImage?.path && oldCard.frontImage.path !== card.frontImage?.path) {
+      try {
+        await deleteFile(oldCard.frontImage.path)
+      } catch (error) {
+        console.error('Failed to delete old front image file:', error)
+      }
+    }
+
+    // Clean up old back image if it's being replaced or removed
+    if (oldCard?.backImage?.path && oldCard.backImage.path !== card.backImage?.path) {
+      try {
+        await deleteFile(oldCard.backImage.path)
+      } catch (error) {
+        console.error('Failed to delete old back image file:', error)
       }
     }
 

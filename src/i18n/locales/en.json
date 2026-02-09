@@ -24,7 +24,15 @@
   "display_name": "Display Name",
   "color": "Color",
   "logo": "Logo",
+  "physical_card": "Physical Card",
+  "front_image": "Front",
+  "back_image": "Back",
+  "add_photo": "Add Photo",
   "remove_image": "Remove image",
+  "confirm_remove_image": {
+    "heading": "Remove image?",
+    "body": "Are you sure you want to remove this image? This action cannot be undone."
+  },
   "click_to_upload": "Click to upload an image",
   "new": {
     "camera_access_required": "Camera Access Required",

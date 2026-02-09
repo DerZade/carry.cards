@@ -118,6 +118,10 @@ html {
   @apply btn-primary;
 }
 
+@utility btn-surface {
+  @apply btn-base bg-surface hover:brightness-130 focus-visible:brightness-130 text-foreground;
+}
+
 @utility btn-brand {
   @apply btn-base bg-brand hover:brightness-110 focus-visible:brightness-110 text-on-brand;
 }

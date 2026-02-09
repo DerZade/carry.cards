@@ -6,6 +6,7 @@
 import { sep, isAbsolute, dirname, basename } from 'pathe'
 
 export const LOGO_DIRECTORY = 'logos'
+export const PHYSICAL_CARDS_DIRECTORY = 'physical-cards'
 
 let isPersistedStorageCached = false
 

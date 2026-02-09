@@ -13,4 +13,6 @@ export type Card = {
   format: SupportedBarcodeFormat
   rawValue: string
   logo?: StoredImage | null | undefined
+  frontImage?: StoredImage | null | undefined
+  backImage?: StoredImage | null | undefined
 }

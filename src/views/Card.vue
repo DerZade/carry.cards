@@ -39,6 +39,22 @@
         <Maximize2 class="text-neutral-400 pointer-events-none justify-self-end self-end" />
       </main>
     </div>
+
+    <section class="mbs-8 grid grid-cols-2 gap-y-2 gap-x-4">
+      <h2 class="text-lg font-semibold col-span-2">{{ t('physical_card') }}</h2>
+      <PhysicalCardPhoto
+        :modelValue="card.frontImage"
+        :fileName="card.id + '-front'"
+        @update:modelValue="(img) => updateImage(img, 'front')"
+      />
+      <PhysicalCardPhoto
+        :modelValue="card.backImage"
+        :fileName="card.id + '-back'"
+        @update:modelValue="(img) => updateImage(img, 'back')"
+      />
+      <label class="text-sm text-foreground text-center">{{ t('front_image') }}</label>
+      <label class="text-sm text-foreground text-center">{{ t('back_image') }}</label>
+    </section>
   </div>
 </template>
 
@@ -48,13 +64,14 @@ import { storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Maximize2 } from 'lucide-vue-next'
+import type { Card, StoredImage } from '@/types'
 
 import RenderedCode from '@/components/RenderedCode.vue'
 import Spinner from '@/components/Spinner.vue'
-import { computedWithControl } from '@vueuse/core'
 import Image from '@/components/Image.vue'
 import FullscreenCode from '@/components/Card/FullscreenCode.vue'
 import FormattedValue from '@/components/FormattedValue.vue'
+import PhysicalCardPhoto from '@/components/Card/PhysicalCardPhoto.vue'
 
 const props = defineProps<{
   id: string
@@ -71,10 +88,11 @@ const { cards } = storeToRefs(store)
 
 // we only update on id changes, to avoid flashes
 // when deleting the card and navigating away
-const card = computedWithControl(
-  () => props.id,
-  () => cards.value.find((card) => card.id === props.id),
-)
+const card = ref<Card>()
+function updateThisCard() {
+  card.value = cards.value.find((card) => card.id === props.id)
+}
+watch(() => props.id, updateThisCard, { immediate: true })
 
 const fullscreen = ref(false)
 
@@ -86,6 +104,17 @@ watch(
   },
   { immediate: true },
 )
+
+async function updateImage(file: StoredImage | null | undefined, side: 'front' | 'back') {
+  if (!card.value) return
+
+  await store.updateCard({
+    ...card.value,
+    [`${side}Image`]: file,
+  })
+
+  updateThisCard()
+}
 </script>
 
 <style scoped>

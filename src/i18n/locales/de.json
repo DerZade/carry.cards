@@ -24,7 +24,15 @@
   "display_name": "Name",
   "color": "Farbe",
   "logo": "Logo",
+  "physical_card": "Physische Karte",
+  "front_image": "Vorderseite",
+  "back_image": "Rückseite",
+  "add_photo": "Foto hinzufügen",
   "remove_image": "Bild entfernen",
+  "confirm_remove_image": {
+    "heading": "Bild entfernen?",
+    "body": "Möchten Sie dieses Bild wirklich entfernen? Diese Aktion kann nicht rückgängig gemacht werden."
+  },
   "click_to_upload": "Klicken Sie, um ein Bild hochzuladen",
   "new": {
     "camera_access_required": "Kamerazugriff erforderlich",
