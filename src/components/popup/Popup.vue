@@ -1,7 +1,7 @@
 <template>
   <Dialog
     v-model:visible="visible"
-    style="min-inline-size: min(100dvi - 10rem, 30rem)"
+    style="min-inline-size: min(100dvi - 10rem, 30rem); place-content: center"
     @close="emit('close')"
   >
     <div v-if="options.heading || closable" class="grid grid-cols-[1fr_auto] items-center">
