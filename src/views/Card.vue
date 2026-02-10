@@ -2,7 +2,7 @@
   <template v-if="!card">
     <Spinner class="m-4" />
   </template>
-  <div v-else class="p-4 pbs-0 grid overflow-hidden">
+  <div v-else class="p-4 pbs-0 grid overflow-hidden max-is-2xl mx-auto">
     <Teleport to="#header-end">
       <RouterLink class="btn-flat-brand" :to="{ name: 'edit', params: { id: card.id } }">
         {{ t('edit') }}
