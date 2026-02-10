@@ -2,7 +2,11 @@
   <Teleport to="#header-end">
     <button type="button" class="btn-brand" @click="submit">{{ t('save') }}</button>
   </Teleport>
-  <form v-if="card" class="px-4 grid gap-1 content-start full-page-size" @submit.prevent="submit">
+  <form
+    v-if="card"
+    class="px-4 grid gap-1 content-start full-page-size max-is-2xl mx-auto"
+    @submit.prevent="submit"
+  >
     <label :for="displayNameID">{{ t('display_name') }}</label>
     <input
       :id="displayNameID"
