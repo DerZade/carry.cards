@@ -3,7 +3,7 @@
     <TransitionGroup
       name="toasts"
       tag="ul"
-      class="fixed inset-0 justify-end isolate flex flex-col items-center pointer-events-none px-4"
+      class="fixed inset-0 justify-end isolate flex flex-col items-center pointer-events-none px-4 mb-[env(safe-area-inset-bottom,0)] mt-[env(safe-area-inset-top,0)] ml-[env(safe-area-inset-left,0)] mr-[env(safe-area-inset-right,0)]"
     >
       <li
         v-for="{ id, icon, text, action } in toasts"
