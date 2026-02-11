@@ -1,7 +1,8 @@
 <template>
   <li :aria-labelledby="labelId">
     <RouterLink
-      class="grid grid-rows-[auto_auto] gap-1 items-stretch"
+      class="grid grid-rows-[auto_auto] gap-1 items-stretch select-none"
+      style="-webkit-touch-callout: none"
       :to="{ name: 'card', params: { id: card.id } }"
     >
       <div class="relative rounded-lg p-2 aspect-(--card-aspect-ratio) card-transition shadow-lg">
