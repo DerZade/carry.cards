@@ -18,7 +18,7 @@
         <Image
           v-if="card.logo"
           :image="card.logo"
-          class="self-stretch is-auto object-contain object-bottom-center"
+          class="self-stretch is-auto object-contain object-bottom"
         />
         <h2
           v-else

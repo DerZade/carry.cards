@@ -9,7 +9,7 @@
         <Image
           v-if="card.logo"
           :image="card.logo"
-          class="absolute block-end-[calc(5%*var(--card-aspect-ratio))] start-[5%] bs-[45%] is-[90%] object-contain object-bottom-center"
+          class="absolute block-end-[calc(5%*var(--card-aspect-ratio))] start-[5%] bs-[45%] is-[90%] object-contain object-center"
         />
         <component
           v-else
