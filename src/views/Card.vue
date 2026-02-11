@@ -14,8 +14,12 @@
       class="aspect-(--card-aspect-ratio) rounded-2xl overflow-hidden grid grid-rows-[1fr_2fr] card-transition shadow-lg"
       style="container-type: inline-size"
     >
-      <header class="card-bg overflow-hidden flex justify-center p-2">
-        <Image v-if="card.logo" :image="card.logo" class="self-stretch is-auto" />
+      <header class="card-bg overflow-hidden flex justify-center p-2 px-4">
+        <Image
+          v-if="card.logo"
+          :image="card.logo"
+          class="self-stretch is-auto object-contain object-bottom-center"
+        />
         <h2
           v-else
           class="text-[clamp(1rem,7cqi,5rem)] overflow-hidden text-ellipsis self-center text-center font-heading font-semibold"
